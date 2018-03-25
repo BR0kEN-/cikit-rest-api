@@ -9,7 +9,7 @@ container_exec()
 
 cikit env/start --ignore-cikit-mount --privileged
 container_exec "apt install ssh lxc iptables -y"
-cikit matrix/provision --install-api
+cikit matrix/provision --rest-api
 container_exec "service docker start && systemctl enable docker"
 
 if [ "test" == "$1" ]; then
