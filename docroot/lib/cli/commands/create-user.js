@@ -63,22 +63,17 @@ const args = parser.parseArgs();
   await user.revokeAccess();
 
   // eslint-disable-next-line no-console
-  console.info(
-    `
-      Open base64-encoded PNG in a browser and scan QR code by your authenticator
-      app (e.g. Google Authenticator) or input the "secret" code manually to add
-      an integration.
-
-      Keep this data private or remove them at all if an integration is added to
-      an authenticating app. Later, having an access to the service via SSH, you
-      will be able to recreate 2FA secret key.
-
-      Secret key: ${user.secret}
-      Barcode: ${await user.generateBarcode()}
-    `
-  );
+  console.log({
+    message:
+      'Open base64-encoded PNG in a browser and scan QR code by your authenticator' +
+      'app (e.g. Google Authenticator) or input the "secret" code manually to add' +
+      'an integration.\n\n' +
+      'Keep this data private or remove them at all if an integration is added to' +
+      'an authenticating app. Later, having an access to the service via SSH, you' +
+      'will be able to recreate 2FA secret key.',
+    secret: user.secret,
+    qrcode: await user.generateBarcode(),
+  });
 
   await app.db.disconnect();
 })();
-
-// setTimeout(() => app.db.disconnect(), 1500);

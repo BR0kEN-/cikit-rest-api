@@ -16,6 +16,7 @@ Do not try to install the package separately! It's a submodule of [CIKit](https:
 ./start.sh
 cikit ssh
 cd /var/www/cikit-rest-api
+# Starts development server.
 npm start
 ```
 
@@ -39,36 +40,24 @@ cikit env/rm
 
 ## Linting
 
-Within the container.
-
-```bash
-cd /usr/local/share/cikit/matrix/roles/api/files/cikit-rest-api
-cikit ssh
-cd /var/www/cikit-rest-api
-npm run lint
-```
-
-On the host.
-
 ```bash
 docker exec -i cikit-rest-api.loc bash -c 'cd /var/www/cikit-rest-api && npm run lint'
 ```
 
 ## Testing
 
-Within the container.
+```bash
+docker exec -i cikit-rest-api.loc bash -c 'cd /var/www/cikit-rest-api && npm test'
+```
+
+## Production
 
 ```bash
 cd /usr/local/share/cikit/matrix/roles/api/files/cikit-rest-api
 cikit ssh
 cd /var/www/cikit-rest-api
-npm test
-```
-
-On the host.
-
-```bash
-docker exec -i cikit-rest-api.loc bash -c 'cd /var/www/cikit-rest-api && npm test'
+NODE_ENV=production npm start &
+# Do `npm stop` to stop the server.
 ```
 
 ## User groups
