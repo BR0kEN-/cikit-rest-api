@@ -69,7 +69,7 @@ app.log = log;
  * @memberOf Application#
  * @type {Number}
  */
-app.port = Number(process.env.PORT || config.get('port'));
+app.port = Number(config.get('port'));
 
 /**
  * @memberOf Application#
