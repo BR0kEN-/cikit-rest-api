@@ -18,6 +18,7 @@ install:
   - sudo git fetch origin ${CIKIT_BRANCH}
   - sudo git checkout ${CIKIT_BRANCH}
   - cd ./matrix/roles/api/files/cikit-rest-api/
+  - sudo git branch -a
   - sudo git fetch origin ${TRAVIS_BRANCH}
   - sudo git checkout ${TRAVIS_BRANCH}
 
