@@ -17,10 +17,9 @@ install:
   - cd /usr/local/share/cikit/
   - sudo git fetch origin ${CIKIT_BRANCH}
   - sudo git checkout ${CIKIT_BRANCH}
-  - git submodule foreach
+  - sudo git submodule update --recursive --remote
   - cd ./matrix/roles/api/files/cikit-rest-api/
   - sudo git branch -a
-  - pwd
   - sudo git fetch origin ${TRAVIS_BRANCH}
   - sudo git checkout ${TRAVIS_BRANCH}
 
