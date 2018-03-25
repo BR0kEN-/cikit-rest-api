@@ -25,4 +25,4 @@ install:
 
 script:
   - sudo bash start.sh test
-  - sudo npm run test-report-coveralls
+  - npm run test-report-coveralls
