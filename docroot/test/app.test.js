@@ -1,5 +1,3 @@
-process.env.NODE_ENV = 'test';
-
 const Cache = require('sync-disk-cache');
 const chai = require('chai');
 
