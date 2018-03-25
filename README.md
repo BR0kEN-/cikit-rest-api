@@ -1,4 +1,4 @@
-# CIKit REST API
+# CIKit Matrix REST API
 
 [![Build status](https://img.shields.io/travis/BR0kEN-/cikit-rest-api.svg?style=flat-square)](https://travis-ci.org/BR0kEN-/cikit-rest-api)
 [![Coverage status](https://img.shields.io/coveralls/github/BR0kEN-/cikit-rest-api/master.svg?style=flat-square)](https://coveralls.io/github/BR0kEN-/cikit-rest-api)

@@ -25,4 +25,4 @@ install:
 
 script:
   - sudo bash start.sh test
-  - npm run test-report-coveralls
+  - cd docroot && npm run test-report-coveralls
