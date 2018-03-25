@@ -2,10 +2,10 @@
   "private": true,
   "scripts": {
     "start": "node ./index.js",
-    "lint": "./node_modules/.bin/eslint ./lib ./test ./index.js",
+    "lint": "eslint ./lib ./test ./index.js",
     "test": "nyc mocha --timeout 10000000 --exit",
     "test-report-html": "nyc report --reporter=html",
-    "test-report-coveralls": "nyc report --reporter=text-lcov | coveralls"
+    "test-report-coveralls": "nyc report --reporter=text-lcov | sed 's|/var/www/cikit-rest-api|docroot|g' | coveralls"
   },
   "engines": {
     "npm": ">=5.6",

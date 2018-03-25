@@ -77,7 +77,7 @@ node ./lib/cli/commands/create-user.js -u BR0kEN -g owner -r
 
 #### User
 
-- [x] `POST` - `/api/v1/user/auth` - available for existing users of a system.
+- `POST` - `/api/v1/user/auth` - available for existing users of a system.
 
   Request an access token:
 
@@ -98,7 +98,7 @@ node ./lib/cli/commands/create-user.js -u BR0kEN -g owner -r
 
   Add `Authorization: Bearer: ACCESS_TOKEN` header or `{"access_token": "ACCESS_TOKEN"}` to body for every request to an API. If you'll get `401`, then the token is expired and you have to send a request for its refreshment (better flow is to store the `expires_in` in your implementation and check its validity before sending a request to an API).
 
-- [x] `POST` - `/api/v1/user/auth/refresh` - can be accessed by existing user with valid refresh token.
+- `POST` - `/api/v1/user/auth/refresh` - can be accessed by existing user with valid refresh token.
 
   Refresh an existing access token using the `refresh_token` given after successful authentication:
 
@@ -108,7 +108,7 @@ node ./lib/cli/commands/create-user.js -u BR0kEN -g owner -r
 
   *The structure of a response is the same as for previous API query.*
 
-- [x] `DELETE` - `/api/v1/user/auth/revoke/:user` - authorized owner can revoke for anyone, authorized users can revoke for ourselves.
+- `DELETE` - `/api/v1/user/auth/revoke/:user` - authorized owner can revoke for anyone, authorized users can revoke for ourselves.
 
   Revoke `access` and `refresh` tokens for a given user (require re-authentication).
 
@@ -124,7 +124,7 @@ node ./lib/cli/commands/create-user.js -u BR0kEN -g owner -r
   }
   ```
 
-- [x] `GET` - `/api/v1/user/auth/setup/:user` - authorized owner can request a QR code for setting up an authenticating application.
+- `GET` - `/api/v1/user/auth/setup/:user` - authorized owner can request a QR code for setting up an authenticating application.
 
   ```bash
   curl http://localhost:1337/api/v1/user/auth/setup/BR0kEN -X GET -H "Content-Type: application/json" -H "Authorization: Bearer ACCESS_TOKEN"
@@ -139,19 +139,19 @@ node ./lib/cli/commands/create-user.js -u BR0kEN -g owner -r
   }
   ```
 
-- [x] `GET` - `/api/v1/user/list`
-- [x] `POST` - `/api/v1/user/add`
-- [x] `DELETE` - `/api/v1/user/delete/:user`
+- `GET` - `/api/v1/user/list`
+- `POST` - `/api/v1/user/add`
+- `DELETE` - `/api/v1/user/delete/:user`
 
 The `/api/v1/user/add` and `/api/v1/user/delete` returns an updated list of users.
 
 #### Droplet
 
-- [x] `GET` - `/api/v1/droplet/list`
-- [x] `POST` - `/api/v1/droplet/add`
-- [x] `PATCH` - `/api/v1/droplet/stop/:droplet`
-- [x] `PATCH` - `/api/v1/droplet/start/:droplet`
-- [x] `PATCH` - `/api/v1/droplet/restart/:droplet`
-- [x] `DELETE` - `/api/v1/droplet/delete/:droplet`
+- `GET` - `/api/v1/droplet/list`
+- `POST` - `/api/v1/droplet/add`
+- `PATCH` - `/api/v1/droplet/stop/:droplet`
+- `PATCH` - `/api/v1/droplet/start/:droplet`
+- `PATCH` - `/api/v1/droplet/restart/:droplet`
+- `DELETE` - `/api/v1/droplet/delete/:droplet`
 
 All `/api/v1/droplet/*` endpoints returns a list of droplets. After `add`, `stop`, `start`, `restart` and `delete` an updated list will be returned.
