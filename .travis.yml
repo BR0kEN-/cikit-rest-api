@@ -6,14 +6,20 @@ python:
 
 env:
   # @todo Change for "master" when https://github.com/BR0kEN-/cikit/pull/107 will be merged.
-  CIKIT_VERSION: issues/106
+  CIKIT_BRANCH: issues/106
 
 services:
   - docker
 
 install:
   - sudo pip install ansible
-  - curl -LSs https://raw.githubusercontent.com/BR0kEN-/cikit/${CIKIT_VERSION}/install.sh | sudo bash -s -- --no-requirements-check
+  - curl -LSs https://raw.githubusercontent.com/BR0kEN-/cikit/master/install.sh | sudo bash -s -- --no-requirements-check
+  - cd /usr/local/share/cikit/
+  - sudo git fetch origin ${CIKIT_BRANCH}
+  - sudo git checkout ${CIKIT_BRANCH}
+  - cd ./matrix/roles/api/files/cikit-rest-api/
+  - sudo git fetch origin ${TRAVIS_BRANCH}
+  - sudo git checkout ${TRAVIS_BRANCH}
 
 script:
-  - sudo bash /usr/local/share/cikit/matrix/roles/api/files/cikit-rest-api/start.sh test
+  - sudo bash start.sh test
