@@ -1,0 +1,20 @@
+sudo: required
+dist: trusty
+
+python:
+  - "2.7"
+
+services:
+  - docker
+
+install:
+  - sudo pip install ansible
+  # Ignore missing VirtualBox and Vagrant.
+  - sudo bash ./install.sh --no-requirements-check
+  - cd /usr/local/share/cikit
+  # @todo Remove these lines when https://github.com/BR0kEN-/cikit/pull/107 will be merged.
+  - sudo git fetch origin issues/106
+  - sudo git checkout issues/106
+
+script:
+  - sudo bash ./matrix/roles/api/files/cikit-rest-api/start.sh test
