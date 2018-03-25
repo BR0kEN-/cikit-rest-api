@@ -4,17 +4,16 @@ dist: trusty
 python:
   - "2.7"
 
+env:
+  # @todo Change for "master" when https://github.com/BR0kEN-/cikit/pull/107 will be merged.
+  CIKIT_VERSION: issues/106
+
 services:
   - docker
 
 install:
   - sudo pip install ansible
-  # Ignore missing VirtualBox and Vagrant.
-  - sudo bash ./install.sh --no-requirements-check
-  - cd /usr/local/share/cikit
-  # @todo Remove these lines when https://github.com/BR0kEN-/cikit/pull/107 will be merged.
-  - sudo git fetch origin issues/106
-  - sudo git checkout issues/106
+  - curl -LSs https://raw.githubusercontent.com/BR0kEN-/cikit/${CIKIT_VERSION}/install.sh | sudo bash -s -- --no-requirements-check
 
 script:
-  - sudo bash ./matrix/roles/api/files/cikit-rest-api/start.sh test
+  - sudo bash /usr/local/share/cikit/matrix/roles/api/files/cikit-rest-api/start.sh test
