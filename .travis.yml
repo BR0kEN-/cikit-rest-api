@@ -18,9 +18,7 @@ install:
   - cd /usr/local/share/cikit/
   - sudo git pull origin ${CIKIT_BRANCH} --recurse-submodules
   - cd ./matrix/roles/api/files/cikit-rest-api/
-  - sudo git branch -a
-  - sudo git fetch origin ${TRAVIS_BRANCH}
-  - sudo git checkout ${TRAVIS_BRANCH}
+  - sudo git pull origin ${TRAVIS_BRANCH} --recurse-submodules
 
 script:
   - sudo bash start.sh test
