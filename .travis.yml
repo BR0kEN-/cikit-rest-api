@@ -1,20 +1,28 @@
+language: node_js
 sudo: required
 dist: trusty
 
+node_js:
+  - "9.8"
+
 python:
   - "2.7"
+
+env:
+  # @todo Change for "master" when https://github.com/BR0kEN-/cikit/pull/107 will be merged.
+  CIKIT_BRANCH: issues/106
 
 services:
   - docker
 
 install:
   - sudo pip install ansible
-  # Ignore missing VirtualBox and Vagrant.
-  - sudo bash ./install.sh --no-requirements-check
-  - cd /usr/local/share/cikit
-  # @todo Remove these lines when https://github.com/BR0kEN-/cikit/pull/107 will be merged.
-  - sudo git fetch origin issues/106
-  - sudo git checkout issues/106
+  - curl -LSs https://raw.githubusercontent.com/BR0kEN-/cikit/master/install.sh | sudo bash -s -- --no-requirements-check
+  - cd /usr/local/share/cikit/
+  - sudo git pull origin ${CIKIT_BRANCH} --recurse-submodules
+  - cd ./matrix/roles/api/files/cikit-rest-api/
+  - sudo git pull origin ${TRAVIS_BRANCH} --recurse-submodules
 
 script:
-  - sudo bash ./matrix/roles/api/files/cikit-rest-api/start.sh test
+  - sudo bash start.sh test
+  - cd docroot && npm run test-report-coveralls
