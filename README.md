@@ -19,16 +19,56 @@ cd /var/www/cikit-rest-api
 npm start
 ```
 
-## Linting
+Stop the container.
 
 ```bash
+cikit env/stop
+```
+
+Start existing container.
+
+```bash
+cikit env/start
+```
+
+Completely remove the container.
+
+```bash
+cikit env/rm
+```
+
+## Linting
+
+Within the container.
+
+```bash
+cd /usr/local/share/cikit/matrix/roles/api/files/cikit-rest-api
+cikit ssh
+cd /var/www/cikit-rest-api
 npm run lint
+```
+
+On the host.
+
+```bash
+docker exec -i cikit-rest-api.loc bash -c 'cd /var/www/cikit-rest-api && npm run lint'
 ```
 
 ## Testing
 
+Within the container.
+
 ```bash
+cd /usr/local/share/cikit/matrix/roles/api/files/cikit-rest-api
+cikit ssh
+cd /var/www/cikit-rest-api
 npm test
+```
+
+On the host.
+
+```bash
+docker exec -i cikit-rest-api.loc bash -c 'cd /var/www/cikit-rest-api && npm test'
 ```
 
 ## User groups
