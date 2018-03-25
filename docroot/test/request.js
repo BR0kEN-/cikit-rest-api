@@ -55,7 +55,7 @@ module.exports = (app, chai) => {
    * @param {String} route
    *   API route.
    *
-   * @return {ServerResponse}
+   * @return {Promise.<ServerResponse>}
    *   The request.
    */
   const api = (auth, method, route) => request(method, route)
