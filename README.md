@@ -5,9 +5,12 @@
 
 ## Requirements
 
+- CIKit
 - Docker
 
 ## Installation
+
+Do not try to install the package separately! It's a submodule of [CIKit](https://github.com/BR0kEN-/cikit).
 
 ```bash
 ./start.sh
