@@ -13,5 +13,5 @@ cikit matrix/provision --install-api
 container_exec "service docker start && systemctl enable docker"
 
 if [ "test" == $1 ]; then
-  container_exec "cd /var/www/cikit-rest-api && npm test && npm run test-report-coveralls"
+  container_exec "cd /var/www/cikit-rest-api && npm run lint && npm test && npm run test-report-coveralls"
 fi
