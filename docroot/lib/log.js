@@ -48,7 +48,7 @@ function globalErrorHandler(logger, error, request, response) {
     logger.error('%d %s - %s (%d)', response.statusCode, request.method, error.message, error.errorId);
 
     response.json({
-      error: error.message.toString ? error.message.toString() : error.message,
+      error: error.message.toString(),
       errorId: error.errorId,
     });
   }

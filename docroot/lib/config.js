@@ -1,9 +1,11 @@
+/**
+ * @type {nconf.Provider}
+ */
 const nconf = require('nconf');
 
-nconf.argv().env();
-
-nconf.file('defaults', {
-  file: './config.json',
-});
+nconf
+  .argv()
+  .env()
+  .file('./config.json');
 
 module.exports = nconf;

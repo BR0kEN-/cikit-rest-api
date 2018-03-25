@@ -1,10 +1,10 @@
 const speakeasy = require('speakeasy');
-const hostname = require('os').hostname();
 const crypto = require('crypto');
 const QRCode = require('qrcode');
 
 module.exports = app => {
   const totp = app.config.get('security:totp');
+  const hostname = app.config.get('HOSTNAME');
 
   function removeTokens(createNew) {
     return Promise.all(['AccessToken', 'RefreshToken'].map(async name => {
