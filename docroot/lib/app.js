@@ -67,12 +67,6 @@ app.log = log;
 
 /**
  * @memberOf Application#
- * @type {Number}
- */
-app.port = Number(config.get('port'));
-
-/**
- * @memberOf Application#
  * @type {Boolean}
  */
 app.isDev = isDev;
