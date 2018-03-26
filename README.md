@@ -12,11 +12,14 @@
 
 Do not try to install the package separately! It's a submodule of [CIKit](https://github.com/BR0kEN-/cikit).
 
+### Local or testing environment
+
 ```bash
 ./start.sh
 cikit ssh
 cd /var/www/cikit-rest-api
 # Starts development server.
+# Or `NODE_ENV=production npm start &` and `npm stop` to stop the server.
 npm start
 ```
 
@@ -38,26 +41,36 @@ Completely remove the container.
 cikit env/rm
 ```
 
-## Linting
+Run ESLint.
 
 ```bash
 docker exec -i cikit-rest-api.loc bash -c 'cd /var/www/cikit-rest-api && npm run lint'
 ```
 
-## Testing
+Run unit and functional tests.
 
 ```bash
 docker exec -i cikit-rest-api.loc bash -c 'cd /var/www/cikit-rest-api && npm test'
 ```
 
-## Production
+### Production
+
+Deploy to existing CIKit Matrix.
 
 ```bash
-cd /usr/local/share/cikit/matrix/roles/api/files/cikit-rest-api
-cikit ssh
-cd /var/www/cikit-rest-api
-NODE_ENV=production npm start &
-# Do `npm stop` to stop the server.
+CIKIT_TAGS="api,ssl" cikit matrix/provision --limit=HOSTNAME --rest-api --ssl-src=/path/to/dir/with/ssl/crts
+```
+
+*To deploy to a new Matrix remove the `CIKIT_TAGS="api,ssl"`.*
+
+The `/path/to/dir/with/ssl/certs` must be a valid path to a directory that contains `*.crt` and `*.key` SSL certificates. They'll be copied to and used on a server by Nginx (for builds) and by Node.js (REST API server).
+
+### Update already deployed API
+
+If CIKit Matrix already uses a REST API and got an update, you'll need to deploy the changes.
+
+```bash
+CIKIT_TAGS="api" cikit matrix/provision --limit=HOSTNAME --rest-api=deploy
 ```
 
 ## User groups
