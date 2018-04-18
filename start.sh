@@ -2,16 +2,11 @@
 
 cd /usr/local/share/cikit/matrix/roles/api/files/cikit-rest-api
 
-container_exec()
-{
-  docker exec -i cikit-rest-api.loc bash -c "$@"
-}
-
 cikit env/start --ignore-cikit-mount --privileged
-container_exec "apt install ssh lxc iptables -y"
+cikit ssh "apt install ssh lxc iptables -y"
 cikit matrix/provision --rest-api
-container_exec "service docker start && systemctl enable docker"
+cikit ssh "service docker start && systemctl enable docker"
 
 if [ "test" == "$1" ]; then
-  container_exec "cd /var/www/cikit-rest-api && npm run lint && npm test"
+  cikit ssh "cd /var/www/cikit-rest-api && npm run lint && npm test"
 fi
