@@ -8,5 +8,5 @@ cikit matrix/provision --rest-api
 cikit ssh "service docker start && systemctl enable docker"
 
 if [ "test" == "$1" ]; then
-  cikit ssh "cd /var/www/cikit-rest-api && npm run lint && npm test"
+  cikit ssh "bash -c 'cd /var/www/cikit-rest-api && npm run lint && npm test'"
 fi
