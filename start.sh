@@ -1,5 +1,6 @@
-#!/usr/bin/env bash -e
+#!/usr/bin/env bash
 
+set -e
 cd /usr/local/share/cikit/matrix/roles/api/files/cikit-rest-api
 
 cikit env/start --ignore-cikit-mount --privileged
