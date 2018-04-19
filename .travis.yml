@@ -17,7 +17,7 @@ services:
   - docker
 
 install:
-  - sudo pip install ansible==2.5.0
+  - sudo pip install ansible==2.4.3
   - curl -LSs https://raw.githubusercontent.com/BR0kEN-/cikit/master/install.sh | sudo bash -s -- --no-requirements-check
   - cd /usr/local/share/cikit/
   - sudo git pull origin ${CIKIT_BRANCH} --recurse-submodules
