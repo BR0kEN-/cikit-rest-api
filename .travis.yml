@@ -11,6 +11,7 @@ python:
 env:
   # @todo Change for "master" when https://github.com/BR0kEN-/cikit/pull/107 will be merged.
   CIKIT_BRANCH: issues/106
+  ANSIBLE_VERBOSITY: 2
 
 services:
   - docker
