@@ -27,3 +27,6 @@ install:
 script:
   - sudo bash start.sh test
   - cd docroot && npm run test-report-coveralls
+
+notifications:
+  slack: cikit:aT0Y9ZQggfbkLoxONJ7Hg1OO
