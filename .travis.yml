@@ -9,8 +9,7 @@ python:
   - "2.7"
 
 env:
-  # @todo Change for "master" when https://github.com/BR0kEN-/cikit/pull/107 will be merged.
-  CIKIT_BRANCH: issues/106
+  CIKIT_BRANCH: master
   ANSIBLE_VERBOSITY: 2
 
 services:
