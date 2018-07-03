@@ -16,7 +16,7 @@ module.exports = (app, command, handler) => async (request, response) => {
   try {
     app.log.debug('Running "%s"', script);
 
-    return callback(parse(await execSync(script), `?(@.task.name == '${request.params.taskName}')`));
+    return callback(parse(await execSync(script), `?(@.task.name == 'droplet : ${request.params.taskName}')`));
   }
   catch (error) {
     throw new app.errors.RuntimeError(parse(error.stdout, '-1:').stderr, 400, 'ansible_command_failed');
