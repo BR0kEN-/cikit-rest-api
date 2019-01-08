@@ -24,7 +24,7 @@ install:
   - sudo git pull origin ${TRAVIS_BRANCH} --recurse-submodules
 
 script:
-  - sudo bash start.sh test && cd docroot && npm run test-report-coveralls || journalctl -xe
+  - sudo bash start.sh test && cd docroot && npm run test-report-coveralls
 
 notifications:
   slack: cikit:aT0Y9ZQggfbkLoxONJ7Hg1OO
