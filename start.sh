@@ -4,7 +4,7 @@ set -e
 cd /usr/local/share/cikit/matrix/roles/api/files/cikit-rest-api
 
 cikit env/start --ignore-cikit-mount --privileged
-cikit ssh "apt install ssh lxc iptables -y"
+cikit ssh "apt install ssh lxc iptables linux-headers-\$(uname -r) -y"
 cikit matrix/provision --rest-api
 
 if cikit ssh "bash -c 'service docker start && systemctl enable docker'"; then
