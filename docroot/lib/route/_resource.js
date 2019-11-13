@@ -27,7 +27,7 @@ module.exports = (requestedUserGroup, filenameOrFunction, ...args) => {
   return app => {
     const userGroups = app.config.get('security:user:groups');
 
-    if (!userGroups.hasOwnProperty(requestedUserGroup)) {
+    if (!Object.prototype.hasOwnProperty.call(userGroups, requestedUserGroup)) {
       throw new Error('You are trying to set a route handler with unknown permissions!');
     }
 
@@ -50,7 +50,7 @@ module.exports = (requestedUserGroup, filenameOrFunction, ...args) => {
       async (request, response, next) => {
         request.payload = Object.create(null);
 
-        if (request.hasOwnProperty('loaders')) {
+        if (Object.prototype.hasOwnProperty.call(request, 'loaders')) {
           for (const [name, handler] of Object.entries(request.loaders)) {
             request.payload[name] = await handler(app);
           }

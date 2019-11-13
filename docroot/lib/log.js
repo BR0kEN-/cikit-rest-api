@@ -22,7 +22,7 @@ function logger(label, isDev) {
         handleException: true,
         colorize: true,
         json: false,
-      })
+      }),
     );
   }
 

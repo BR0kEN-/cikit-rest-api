@@ -1,0 +1,51 @@
+PLAY [all] *********************************************************************
+
+TASK [Gather facts] ************************************************************
+ok: [localhost]
+
+TASK [Determine domain] ********************************************************
+ok: [localhost]
+
+TASK [include_vars] ************************************************************
+ok: [localhost] => (item=/usr/local/share/cikit/matrix/vars/os-configuration.yml)
+ok: [localhost] => (item=/usr/local/share/cikit/matrix/vars/apt.yml)
+ok: [localhost] => (item=/usr/local/share/cikit/matrix/vars/nginx.yml)
+ok: [localhost] => (item=/usr/local/share/cikit/matrix/vars/ssl.yml)
+
+TASK [Compute allowed hosts] ***************************************************
+ok: [localhost]
+included: /usr/local/share/cikit/matrix/roles/droplet/tasks/list.yml for localhost
+
+TASK [droplet : Get the list of all droplets] **********************************
+changed: [localhost]
+
+TASK [droplet : Store the list of all droplets] ********************************
+ok: [localhost] => {
+    "msg": [
+        "7e16c2cb0bf6        br0ken/ubuntu-systemd   \"/bin/bash -c 'exec ?\"   9 minutes ago       Up 8 minutes        0.0.0.0:2222->22/tcp, 127.0.0.1:8022->80/tcp, 127.0.0.1:44322->443/tcp   cikit22",
+        "7deca4fe3399        br0ken/ubuntu-systemd   \"/bin/bash -c 'exec ?\"   13 minutes ago      Up 12 minutes       0.0.0.0:2221->22/tcp, 127.0.0.1:8021->80/tcp, 127.0.0.1:44321->443/tcp   cikit21",
+        "1a2d6469eaa4        br0ken/ubuntu-systemd   \"/bin/bash -c 'exec ?\"   About an hour ago   Up About an hour    0.0.0.0:2220->22/tcp, 127.0.0.1:8020->80/tcp, 127.0.0.1:44320->443/tcp   cikit20",
+        "693234d4f530        br0ken/ubuntu-systemd   \"/bin/bash -c 'exec ?\"   About an hour ago   Up About an hour    0.0.0.0:2219->22/tcp, 127.0.0.1:8019->80/tcp, 127.0.0.1:44319->443/tcp   cikit19",
+        "3a7947562fd4        br0ken/ubuntu-systemd   \"/bin/bash -c 'exec ?\"   2 hours ago         Up 2 hours          0.0.0.0:2218->22/tcp, 127.0.0.1:8018->80/tcp, 127.0.0.1:44318->443/tcp   cikit18",
+        "582dcb802e82        br0ken/ubuntu-systemd   \"/bin/bash -c 'exec ?\"   2 hours ago         Up 2 hours          0.0.0.0:2217->22/tcp, 127.0.0.1:8017->80/tcp, 127.0.0.1:44317->443/tcp   cikit17",
+        "4153ab43ccd0        br0ken/ubuntu-systemd   \"/bin/bash -c 'exec ?\"   2 hours ago         Up 2 hours          0.0.0.0:2216->22/tcp, 127.0.0.1:8016->80/tcp, 127.0.0.1:44316->443/tcp   cikit16",
+        "52f566207e7a        br0ken/ubuntu-systemd   \"/bin/bash -c 'exec ?\"   2 hours ago         Up 2 hours          0.0.0.0:2215->22/tcp, 127.0.0.1:8015->80/tcp, 127.0.0.1:44315->443/tcp   cikit15",
+        "ca812bc15796        br0ken/ubuntu-systemd   \"/bin/bash -c 'exec ?\"   2 hours ago         Up 2 hours          0.0.0.0:2214->22/tcp, 127.0.0.1:8014->80/tcp, 127.0.0.1:44314->443/tcp   cikit14",
+        "513443923c2e        br0ken/ubuntu-systemd   \"/bin/bash -c 'exec ?\"   3 hours ago         Up 3 hours          0.0.0.0:2213->22/tcp, 127.0.0.1:8013->80/tcp, 127.0.0.1:44313->443/tcp   cikit13",
+        "9e14eb153a9c        br0ken/ubuntu-systemd   \"/bin/bash -c 'exec ?\"   3 hours ago         Up 3 hours          0.0.0.0:2212->22/tcp, 127.0.0.1:8012->80/tcp, 127.0.0.1:44312->443/tcp   cikit12",
+        "a705f8bfa167        br0ken/ubuntu-systemd   \"/bin/bash -c 'exec ?\"   3 hours ago         Up 3 hours          0.0.0.0:2211->22/tcp, 127.0.0.1:8011->80/tcp, 127.0.0.1:44311->443/tcp   cikit11",
+        "d8859e7bfd83        br0ken/ubuntu-systemd   \"/bin/bash -c 'exec ?\"   4 hours ago         Up 4 hours          0.0.0.0:2210->22/tcp, 127.0.0.1:8010->80/tcp, 127.0.0.1:44310->443/tcp   cikit10",
+        "b1edf026fcde        br0ken/ubuntu-systemd   \"/bin/bash -c 'exec ?\"   4 hours ago         Up 4 hours          0.0.0.0:2209->22/tcp, 127.0.0.1:8009->80/tcp, 127.0.0.1:44309->443/tcp   cikit09",
+        "705bf62eb2ae        br0ken/ubuntu-systemd   \"/bin/bash -c 'exec ?\"   4 hours ago         Up 4 hours          0.0.0.0:2208->22/tcp, 127.0.0.1:8008->80/tcp, 127.0.0.1:44308->443/tcp   cikit08",
+        "797ee3d31550        br0ken/ubuntu-systemd   \"/bin/bash -c 'exec ?\"   4 hours ago         Up 4 hours          0.0.0.0:2207->22/tcp, 127.0.0.1:8007->80/tcp, 127.0.0.1:44307->443/tcp   cikit07",
+        "0e36ddac6ef4        br0ken/ubuntu-systemd   \"/bin/bash -c 'exec ?\"   4 hours ago         Up 4 hours          0.0.0.0:2206->22/tcp, 127.0.0.1:8006->80/tcp, 127.0.0.1:44306->443/tcp   cikit06",
+        "21f823be16bd        br0ken/ubuntu-systemd   \"/bin/bash -c 'exec ?\"   5 hours ago         Up 5 hours          0.0.0.0:2205->22/tcp, 127.0.0.1:8005->80/tcp, 127.0.0.1:44305->443/tcp   cikit05",
+        "553324137d8b        br0ken/ubuntu-systemd   \"/bin/bash -c 'exec ?\"   5 hours ago         Up 5 hours          0.0.0.0:2204->22/tcp, 127.0.0.1:8004->80/tcp, 127.0.0.1:44304->443/tcp   cikit04",
+        "7ab62585529e        br0ken/ubuntu-systemd   \"/bin/bash -c 'exec ?\"   5 hours ago         Up 5 hours          0.0.0.0:2203->22/tcp, 127.0.0.1:8003->80/tcp, 127.0.0.1:44303->443/tcp   cikit03",
+        "fc6c0d8f363b        br0ken/ubuntu-systemd   \"/bin/bash -c 'exec ?\"   5 hours ago         Up 5 hours          0.0.0.0:2202->22/tcp, 127.0.0.1:8002->80/tcp, 127.0.0.1:44302->443/tcp   cikit02",
+        "4f5f3f637e5c        br0ken/ubuntu-systemd   \"/bin/bash -c 'exec ?\"   29 minutes ago      Exited (0) 26 minutes ago                                                                    cikit01"
+    ]
+}
+
+PLAY RECAP *********************************************************************
+localhost                  : ok=7    changed=1    unreachable=0    failed=0    skipped=31   rescued=0    ignored=0

@@ -1,0 +1,24 @@
+PLAY [all] *********************************************************************
+
+TASK [Gather facts] ************************************************************
+ok: [localhost]
+
+TASK [Determine domain] ********************************************************
+ok: [localhost]
+
+TASK [include_vars] ************************************************************
+ok: [localhost] => (item=/usr/local/share/cikit/matrix/vars/os-configuration.yml)
+ok: [localhost] => (item=/usr/local/share/cikit/matrix/vars/apt.yml)
+ok: [localhost] => (item=/usr/local/share/cikit/matrix/vars/nginx.yml)
+ok: [localhost] => (item=/usr/local/share/cikit/matrix/vars/ssl.yml)
+
+TASK [Compute allowed hosts] ***************************************************
+ok: [localhost]
+included: /usr/local/share/cikit/matrix/roles/droplet/tasks/stop.yml for localhost
+included: /usr/local/share/cikit/matrix/roles/droplet/tasks/command.yml for localhost
+
+TASK [droplet : Stop the "bla" droplet] ****************************************
+fatal: [localhost]: FAILED! => {"changed": true, "cmd": "docker stop bla", "delta": "0:00:00.510090", "end": "2019-11-13 19:27:33.879035", "msg": "non-zero return code", "rc": 1, "start": "2019-11-13 19:27:33.368945", "stderr": "Error response from daemon: No such container: bla", "stderr_lines": ["Error response from daemon: No such container: bla"], "stdout": "", "stdout_lines": []}
+
+PLAY RECAP *********************************************************************
+localhost                  : ok=6    changed=0    unreachable=0    failed=1    skipped=22   rescued=0    ignored=0

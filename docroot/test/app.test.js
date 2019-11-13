@@ -43,6 +43,8 @@ describe('The user', () => {
     manager: 'I_AM_MANAGER',
   };
 
+  before(async () => Promise.all((await app.managers.user.getMultiple({username: Object.values(users)})).map(user => user.remove())));
+
   before(async () => {
     const owners = await app.managers.user.getMultiple({group: 'owner'});
 
@@ -276,9 +278,11 @@ describe('The user', () => {
 
     // Various unsuccessful attempts to add a user.
     for (let i = 0; i < addFailingSuites.length; i++) {
-      assert.response.error(await request
-        .api(auth, 'post', 'user/add')
-        .send(addFailingSuites[i].data), addFailingSuites[i]
+      assert.response.error(
+        await request
+          .api(auth, 'post', 'user/add')
+          .send(addFailingSuites[i].data),
+        addFailingSuites[i],
       );
     }
 
@@ -304,6 +308,7 @@ describe('The user', () => {
     });
 
     // Remove a user created the moment before.
+    // eslint-disable-next-line require-atomic-updates
     updatedList = await request.api(auth, 'delete', `user/delete/${validNewUser.username}`);
     // The list of users is returned.
     assert.response.list(updatedList);
@@ -379,16 +384,19 @@ describe('The user', () => {
       };
 
       const compare = async (method, route, dropletsIncrement = 0, portsNumber = 3, statusRegexp = /^Up \d+/) => {
+        const id = `${method.toLocaleUpperCase()}:${route}`;
+
         droplets = await doer(method, route);
         // Ensure new droplet is in the list.
-        droplets.body.should.have.length(currentLength + dropletsIncrement);
+        droplets.body.should.have.length(currentLength + dropletsIncrement, id);
         // Update current number of droplets.
         currentLength = droplets.body.length;
-        droplet = droplets.body[currentLength - 1];
+        // The first is the latest.
+        droplet = droplets.body[0];
 
         if (null !== portsNumber) {
-          Object.keys(droplet.ports).should.have.length(portsNumber);
-          droplet.status.should.match(statusRegexp);
+          Object.keys(droplet.ports).should.have.length(portsNumber, id);
+          droplet.status.should.match(statusRegexp, id);
         }
       };
 

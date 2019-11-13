@@ -15,6 +15,8 @@ const options = {
 
 const server = Server
   .create(options, app)
+  .setTimeout(5 * 60 * 1000)
+  .setKeepAlive(true)
   .listen(app.config.get('port'), app.config.get('host'));
 
 process.on('SIGINT', () => server.close(process.exit));

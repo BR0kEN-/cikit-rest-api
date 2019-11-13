@@ -2,7 +2,7 @@ const assertHttpCode = (response, code = 200) => response.should.have.status(cod
 
 const assert = {
   response: {
-    error: (response, suite) => {
+    error(response, suite) {
       assertHttpCode(response, suite.httpCode);
 
       response.body.should.have
@@ -13,7 +13,7 @@ const assert = {
         .property('errorId')
         .eql(suite.errorId);
     },
-    auth: (response) => {
+    auth(response) {
       assertHttpCode(response);
 
       response.body.should.have
@@ -32,7 +32,7 @@ const assert = {
         .property('refresh_token')
         .length(64);
     },
-    list: (response) => {
+    list(response) {
       assertHttpCode(response);
 
       response.should.have

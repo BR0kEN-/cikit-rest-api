@@ -41,7 +41,7 @@ const app = require('express')();
 /**
  * @type {Boolean}
  */
-const isDev = 'development' === app.get('env');
+const isDev = ['development', 'test'].includes(app.get('env'));
 /**
  * @type {nconf.Provider}
  */

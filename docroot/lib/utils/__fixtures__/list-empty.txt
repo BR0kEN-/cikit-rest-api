@@ -1,0 +1,28 @@
+PLAY [all] *********************************************************************
+
+TASK [Gather facts] ************************************************************
+ok: [localhost]
+
+TASK [Determine domain] ********************************************************
+ok: [localhost]
+
+TASK [include_vars] ************************************************************
+ok: [localhost] => (item=/usr/local/share/cikit/matrix/vars/os-configuration.yml)
+ok: [localhost] => (item=/usr/local/share/cikit/matrix/vars/apt.yml)
+ok: [localhost] => (item=/usr/local/share/cikit/matrix/vars/nginx.yml)
+ok: [localhost] => (item=/usr/local/share/cikit/matrix/vars/ssl.yml)
+
+TASK [Compute allowed hosts] ***************************************************
+ok: [localhost]
+included: /usr/local/share/cikit/matrix/roles/droplet/tasks/list.yml for localhost
+
+TASK [droplet : Get the list of all droplets] **********************************
+changed: [localhost]
+
+TASK [droplet : Store the list of all droplets] ********************************
+ok: [localhost] => {
+    "msg": []
+}
+
+PLAY RECAP *********************************************************************
+localhost                  : ok=7    changed=1    unreachable=0    failed=0    skipped=31   rescued=0    ignored=0
